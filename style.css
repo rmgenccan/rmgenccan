@@ -209,53 +209,62 @@ footer {
 
 .equation-section {
     position: relative;
-    overflow: hidden; /* Denklemler sayfa sınırlarını aşıp yatay kaydırma çubuğu oluşturmasın */
+    overflow: hidden; 
+    /* Denklemlerin kapsayıcısı tam ekran genişliğinde olmalı */
+    width: 100vw; 
+    /* Yatayda taşmaları önlemek ve ortalamayı bozmamak için */
+    left: 50%;
+    margin-left: -50vw;
 }
 
 .equation-section .container {
     position: relative;
-    z-index: 2; /* İçeriğin (kutuların) denklemlerin üstünde kalmasını garanti eder */
+    z-index: 2; /* Kutuların üstte kalması için */
 }
 
 .bg-equation {
     position: absolute;
-    top: 50%; /* Bulunduğu bölümün dikeyde ortasında durur */
-    transform: translateY(-50%);
-    opacity: 0.15; /* Hafif soluk görünüm */
-    font-size: 2.2rem; /* Daha büyük, arka plan yazısı */
-    pointer-events: none; /* Üzerine tıklanmasını veya seçilmesini engeller */
+    top: 50%; 
+    transform: translateY(-50%); /* Dikeyde tam ortalama */
+    opacity: 0.15; 
+    font-size: 2.2rem; 
+    pointer-events: none; 
     white-space: nowrap;
     color: var(--text-primary);
-    z-index: 1; /* Kutuların arkasında, arkaplanın önünde durur */
+    z-index: 1; /* Kutuların arkasında kalması için */
+    
+    /* Yeni Eklenenler: Denklemlerin daha net görünmesi için hafif gölge */
+    text-shadow: 0 0 10px rgba(244, 234, 225, 0.3); 
 }
 
 /* Soldaki Denklem (Klasik Mekanik vs.) */
 .left-bg-equation {
-    left: -50px; /* Ekranın solundan hafif taşarak başlar (tasarım tercihi) */
+    left: 5%; /* Ekranın solundan %5 içeride başlar */
 }
 
 /* Sağdaki Denklem (Kuantum vs.) */
 .right-bg-equation {
-    right: -50px; /* Ekranın sağından hafif taşar */
+    right: 5%; /* Ekranın sağından %5 içeride biter */
+    text-align: right;
 }
 
 /* Orta ekran boyutları için (Tabletler) */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
     .bg-equation {
-        opacity: 0.08; /* Ekran küçüldükçe kutuların arkasında kalacağı için biraz daha saydamlaştırıyoruz */
+        opacity: 0.12; 
         font-size: 1.8rem;
     }
     .left-bg-equation {
-        left: -10px;
+        left: 2%; /* Daha dar ekranlarda kenarlara daha çok yaklaşır */
     }
     .right-bg-equation {
-        right: -10px;
+        right: 2%;
     }
 }
 
 /* Mobil ekranlar için denklemleri gizle veya çok küçült */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .bg-equation {
-        display: none; /* Mobilde dar ekranda karmaşa yaratmaması için gizliyoruz */
+        display: none; /* Dar ekranlarda okunamayacağı/kutuya çarpacağı için gizlenir */
     }
 }
