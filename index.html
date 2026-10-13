@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Blog & Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (İkonlar için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fizik Temalı Animasyonlu Arka Plan (Sadece Ana Sayfada Görünür) -->
+    <canvas id="physicsCanvas"></canvas>
+
+    <!-- Navigasyon (Menü) -->
+    <nav>
+        <div class="logo">Adın Soyadın</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Ana Sayfa</a></li>
+            <li class="dropdown">
+                <a href="#ders-notlari" class="dropbtn">Ders Notları <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#fizik-notlari">Fizik</a>
+                    <a href="#yz-notlari">Yapay Zeka</a>
+                </div>
+            </li>
+            <li><a href="#projeler">Projeler</a></li>
+            <li><a href="#hakkimda">Hakkımda</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- Ana Sayfa (Home) Bölümü -->
+    <section id="home" class="section reveal">
+        <div class="hero-content">
+            <h1>Merhaba, ben [Adın]</h1>
+            <p>Fizik ve Yapay Zeka üzerine araştırmalar, projeler ve ders notlarımı paylaştığım kişisel alanıma hoş geldiniz.</p>
+            <a href="#hakkimda" class="btn">Daha Fazla Bilgi</a>
+        </div>
+    </section>
+
+    <!-- Ders Notları - Fizik Bölümü -->
+    <section id="fizik-notlari" class="section reveal">
+        <div class="container">
+            <h2>Fizik Ders Notları</h2>
+            <p class="section-subtitle">Kuantum mekaniği, termodinamik ve klasik mekanik üzerine notlarım.</p>
+            <div class="grid-container">
+                <!-- Buraya istediğin kadar not ekleyebilirsin -->
+                <article class="card">
+                    <h3>Klasik Mekanik - Newton Kanunları</h3>
+                    <p class="date">Ekim 2026</p>
+                    <p>Newton'un hareket yasaları ve uygulamaları üzerine detaylı özet.</p>
+                    <a href="#" class="read-more">Notu Oku <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Kuantum Fiziğine Giriş</h3>
+                    <p class="date">Eylül 2026</p>
+                    <p>Schrödinger denklemi ve dalga fonksiyonları hakkında temel bilgiler.</p>
+                    <a href="#" class="read-more">Notu Oku <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ders Notları - Yapay Zeka Bölümü -->
+    <section id="yz-notlari" class="section reveal">
+        <div class="container">
+            <h2>Yapay Zeka Ders Notları</h2>
+            <p class="section-subtitle">Makine öğrenmesi algoritmaları ve derin öğrenme modelleri.</p>
+            <div class="grid-container">
+                <article class="card">
+                    <h3>Yapay Sinir Ağlarına (YSA) Giriş</h3>
+                    <p class="date">Ekim 2026</p>
+                    <p>İleri beslemeli ağlar ve geri yayılım (backpropagation) algoritması.</p>
+                    <a href="#" class="read-more">Notu Oku <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projeler Bölümü -->
+    <section id="projeler" class="section reveal">
+        <div class="container">
+            <h2>Projeler</h2>
+            <p class="section-subtitle">Üzerinde çalıştığım akademik ve kişisel projeler.</p>
+            <div class="grid-container">
+                <article class="project-card">
+                    <div class="project-info">
+                        <h3>Fizik Simülasyon Motoru</h3>
+                        <p>Python kullanarak geliştirdiğim, parçacık çarpışmalarını simüle eden basit bir motor.</p>
+                        <div class="tags">
+                            <span>Python</span><span>Pygame</span>
+                        </div>
+                        <a href="https://github.com/senin-kullanici-adin" target="_blank" class="btn outline">GitHub'da Gör</a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-info">
+                        <h3>Görüntü İşleme ile Yüz Tanıma</h3>
+                        <p>OpenCV ve TensorFlow kullanarak geliştirdiğim yüz tanıma sistemi.</p>
+                        <div class="tags">
+                            <span>Python</span><span>TensorFlow</span><span>OpenCV</span>
+                        </div>
+                        <a href="#" class="btn outline">Detaylar</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımda Bölümü -->
+    <section id="hakkimda" class="section reveal">
+        <div class="container about-container">
+            <h2>Hakkımda</h2>
+            <div class="about-content">
+                <!-- Profil Resmi (İsteğe bağlı) -->
+                <!-- <img src="profil.jpg" alt="Profil Resmi" class="profile-img"> -->
+                <div class="about-text">
+                    <p>Buraya kendi özgeçmişini, eğitim bilgilerini ve ilgi alanlarını yazabilirsin. Fizik ve Yapay Zeka gibi iki farklı ama birbirini tamamlayan alana nasıl yöneldiğini anlatabilirsin.</p>
+                    <p>Eğitim:<br>
+                    <strong>Üniversite Adı</strong> - Bölüm (20XX - 20XX)</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:mailadresin@email.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 [Adın Soyadın]. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
