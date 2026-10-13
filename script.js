@@ -24,7 +24,7 @@ burger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
 });
 
-// 3. Fizik Arka Plan Animasyonu (Yeni Mavi Temaya Uygun)
+// 3. Fizik Arka Plan Animasyonu (Toprak/Kahve Temasına Uygun)
 const canvas = document.getElementById('physicsCanvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -37,7 +37,7 @@ if (canvas) {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
+            this.size = Math.random() * 2 + 1.5; // Biraz daha belirgin parçacıklar
             this.speedX = Math.random() * 1 - 0.5;
             this.speedY = Math.random() * 1 - 0.5;
         }
@@ -49,8 +49,8 @@ if (canvas) {
             if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
         }
         draw() {
-            // Parçacıklar için seçtiğin okyanus mavisi (#126180)
-            ctx.fillStyle = 'rgba(18, 97, 128, 0.7)'; 
+            // Parçacıklar için kestane/kiremit tonu (#80461B)
+            ctx.fillStyle = 'rgba(128, 70, 27, 0.8)'; 
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -59,7 +59,7 @@ if (canvas) {
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 15000;
+        let numberOfParticles = (canvas.height * canvas.width) / 13000; // Yoğunluk ayarı
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
         }
@@ -78,8 +78,8 @@ if (canvas) {
 
                 if (distance < 120) {
                     ctx.beginPath();
-                    // Bağlantı çizgileri için tema ile uyumlu açık mavi-gri tonu
-                    ctx.strokeStyle = 'rgba(163, 194, 219,' + (1 - distance/120) * 0.3 + ')';
+                    // Bağlantı çizgileri için bej/krem tonu
+                    ctx.strokeStyle = 'rgba(199, 180, 167,' + (1 - distance/120) * 0.4 + ')';
                     ctx.lineWidth = 1;
                     ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                     ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
