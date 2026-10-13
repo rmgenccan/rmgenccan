@@ -1,12 +1,12 @@
-/* Temel Ayarlar ve Renk Paleti (Derin Mavi Tema) */
+/* Temel Ayarlar ve Renk Paleti (Toprak / Kahve Teması) */
 :root {
-    --bg-color: #002E63;       /* En koyu lacivert (Ana Arka plan) */
-    --surface-color: #003366;  /* Biraz daha açık lacivert (Kartlar ve Menü) */
-    --text-primary: #f0f4f8;   /* Göz yormayan kırık beyaz/buz mavisi */
-    --text-secondary: #a3c2db; /* Alt başlıklar için açık mavi-gri */
-    --accent-color: #126180;   /* Okyanus mavisi (Vurgular ve normal butonlar) */
-    --accent-hover: #1b8ebf;   /* Üzerine gelince parlayan daha açık mavi */
-    --border-color: #0a4666;   /* Kart çerçeveleri için uyumlu ara ton */
+    --bg-color: #331800;       /* En koyu kahverengi (Ana Arka plan) */
+    --surface-color: #44362F;  /* Koyu kahve-gri (Kartlar ve Menü) */
+    --text-primary: #f4eae1;   /* Krem / Kırık beyaz (Ana metinler) */
+    --text-secondary: #c7b4a7; /* Bej / Açık toprak (Alt başlıklar) */
+    --accent-color: #80461B;   /* Kestane / Kiremit (Vurgular ve normal butonlar) */
+    --accent-hover: #a65c26;   /* Üzerine gelince parlayan daha açık kiremit/turuncu */
+    --border-color: #594336;   /* Kart çerçeveleri için ara toprak tonu */
 }
 
 * {
@@ -46,7 +46,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: rgba(0, 46, 99, 0.95); /* Arka planla uyumlu saydamlık */
+    background-color: rgba(68, 54, 47, 0.95); /* Menü için saydam kahve-gri */
     backdrop-filter: blur(10px);
     position: fixed;
     width: 100%;
@@ -59,6 +59,7 @@ nav {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #f4eae1;
 }
 
 .nav-links {
@@ -92,7 +93,7 @@ nav {
     position: absolute;
     background-color: var(--surface-color);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
     z-index: 1;
     border-radius: 5px;
     border: 1px solid var(--border-color);
@@ -143,7 +144,7 @@ h2 {
     font-size: 2.2rem;
     margin-bottom: 10px;
     color: #ffffff;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-hover);
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -185,7 +186,7 @@ h2 {
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
-    color: #ffffff;
+    color: #f4eae1;
     padding: 12px 24px;
     border-radius: 5px;
     font-weight: 600;
@@ -225,7 +226,7 @@ h2 {
 
 .card:hover, .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 15, 33, 0.8);
+    box-shadow: 0 10px 20px rgba(15, 7, 0, 0.8);
     border-color: var(--accent-hover);
 }
 
@@ -253,13 +254,14 @@ h2 {
     margin: 15px 0;
 }
 .tags span {
-    background-color: rgba(18, 97, 128, 0.4);
+    background-color: rgba(128, 70, 27, 0.3); /* Accent renginin saydam hali */
     color: var(--text-primary);
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
     margin-right: 8px;
     display: inline-block;
+    border: 1px solid var(--accent-color);
 }
 
 /* Hakkımda Bölümü */
@@ -303,7 +305,7 @@ h2 {
     width: 100%;
     height: 100vh;
     z-index: 1;
-    opacity: 0.6; 
+    opacity: 0.5; /* Animasyonun belirginliği */
 }
 
 /* Footer */
@@ -329,6 +331,7 @@ footer {
         width: 50%;
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
+        border-left: 1px solid var(--border-color);
     }
     .nav-links li {
         margin: 20px 0;
