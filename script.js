@@ -1,102 +1,107 @@
 // 1. Scroll (Kaydırma) Animasyonu
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
-
     for (var i = 0; i < reveals.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = reveals[i].getBoundingClientRect().top;
         var elementVisible = 100;
-
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
         }
     }
 }
-
 window.addEventListener("scroll", reveal);
 reveal();
 
 // 2. Mobil Menü (Burger) İşlevi
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
-
 burger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
 });
 
-// 3. Fizik Arka Plan Animasyonu (Toprak/Kahve Temasına Uygun)
+// 3. Karadelik Arka Plan Animasyonu (Ana Sayfa İçin)
 const canvas = document.getElementById('physicsCanvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let width, height, center;
 
-    let particlesArray = [];
+    // Sadece ana sayfa (home) bölümü kadar (100vh) kaplaması için
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight; 
+        center = { x: width / 2, y: height / 2 };
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const particles = [];
+    const particleCount = 350;
 
     class Particle {
         constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1.5; // Biraz daha belirgin parçacıklar
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
+            this.reset();
+        }
+        reset() {
+            this.angle = Math.random() * Math.PI * 2;
+            this.distance = Math.random() * (width > height ? width : height);
+            this.size = Math.random() * 2 + 0.5;
+            this.speed = Math.random() * 0.02 + 0.005;
+            this.pull = Math.random() * 2 + 0.5;
+            
+            // Toprak ve Kahve temasına uygun renkler (Ateş, kiremit, kehribar tonları)
+            const colors = ['#80461B', '#a65c26', '#ffb347', '#ff7b00', '#f4eae1'];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
         }
         update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            this.distance -= this.pull;
+            this.angle += this.speed;
+            
+            if (this.distance < 45) {
+                this.reset();
+                this.distance = (width > height ? width : height) / 1.1;
+            }
         }
         draw() {
-            // Parçacıklar için kestane/kiremit tonu (#80461B)
-            ctx.fillStyle = 'rgba(128, 70, 27, 0.8)'; 
+            const x = center.x + Math.cos(this.angle) * this.distance;
+            const y = center.y + Math.sin(this.angle) * this.distance;
+
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.arc(x, y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
             ctx.fill();
+            ctx.shadowBlur = 0; 
         }
     }
 
-    function init() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 13000; // Yoğunluk ayarı
-        for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-        }
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
     }
 
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
+        // Tam siyah yerine sitenin kendi koyu kahve (#331800) arkaplanına 
+        // doğru eriyen bir kuyruk efekti veriyoruz.
+        ctx.fillStyle = "rgba(51, 24, 0, 0.2)"; 
+        ctx.fillRect(0, 0, width, height);
 
-            for (let j = i; j < particlesArray.length; j++) {
-                const dx = particlesArray[i].x - particlesArray[j].x;
-                const dy = particlesArray[i].y - particlesArray[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
 
-                if (distance < 120) {
-                    ctx.beginPath();
-                    // Bağlantı çizgileri için bej/krem tonu
-                    ctx.strokeStyle = 'rgba(199, 180, 167,' + (1 - distance/120) * 0.4 + ')';
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                    ctx.stroke();
-                    ctx.closePath();
-                }
-            }
-        }
+        // Merkezdeki Karadelik (Olay Ufku)
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, 50, 0, Math.PI * 2);
+        ctx.fillStyle = "#120800"; // Deliğin içi ekstra koyu siyah/kahve
+        ctx.shadowBlur = 70;
+        ctx.shadowColor = "#80461B"; // Karadeliğin etrafındaki kiremit rengi hale
+        ctx.fill();
+        ctx.shadowBlur = 0; 
+
         requestAnimationFrame(animate);
     }
 
-    init();
     animate();
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        init();
-    });
 }
