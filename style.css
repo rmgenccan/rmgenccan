@@ -1,46 +1,65 @@
-/* --- Denklem (Watermark) Efektleri --- */
-
-.equation-card {
-    position: relative;
-    overflow: hidden; /* Denklemin kartın dışına taşmasını engeller */
-    z-index: 1;
-}
-
-.equation-card > *:not(.watermark-equation) {
-    position: relative;
-    z-index: 2; /* Metinlerin denklemin üstünde kalmasını sağlar */
-}
-
-.watermark-equation {
+/* Karadelik Canvas Arkaplan (Görünürlük Ayarı) */
+#physicsCanvas {
     position: absolute;
-    top: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Sadece ana sayfayı kapsar */
+    z-index: 0; /* İçeriklerin arkasında kalsın */
+    opacity: 1; /* Efektin canlı görünmesi için tam opaklık */
+}
+
+/* --- Sayfa Arka Planındaki Denklemler (Kutuların Dışında) --- */
+
+.equation-section {
+    position: relative;
+    overflow: hidden; /* Denklemler sayfa sınırlarını aşıp yatay kaydırma çubuğu oluşturmasın */
+}
+
+.equation-section .container {
+    position: relative;
+    z-index: 2; /* İçeriğin (kutuların) denklemlerin üstünde kalmasını garanti eder */
+}
+
+.bg-equation {
+    position: absolute;
+    top: 50%; /* Bulunduğu bölümün dikeyde ortasında durur */
     transform: translateY(-50%);
-    opacity: 0.12; /* Çok hafif soluk görünüm (İstersen artırabilirsin) */
-    font-size: 1.8rem;
-    pointer-events: none; /* Üzerine tıklanmasını engeller */
+    opacity: 0.15; /* Hafif soluk görünüm */
+    font-size: 2.2rem; /* Daha büyük, arka plan yazısı */
+    pointer-events: none; /* Üzerine tıklanmasını veya seçilmesini engeller */
     white-space: nowrap;
     color: var(--text-primary);
-    transition: opacity 0.4s ease;
+    z-index: 1; /* Kutuların arkasında, arkaplanın önünde durur */
 }
 
-/* Kartın üzerine gelince denklem hafif belirginleşsin */
-.equation-card:hover .watermark-equation {
-    opacity: 0.25; 
+/* Soldaki Denklem (Klasik Mekanik vs.) */
+.left-bg-equation {
+    left: -50px; /* Ekranın solundan hafif taşarak başlar (tasarım tercihi) */
 }
 
-/* Klasik Mekanik (Sola yaslı denklem) */
-.left-equation {
-    left: -20px;
+/* Sağdaki Denklem (Kuantum vs.) */
+.right-bg-equation {
+    right: -50px; /* Ekranın sağından hafif taşar */
 }
 
-/* Kuantum (Sağa yaslı denklem) */
-.right-equation {
-    right: -20px;
+/* Orta ekran boyutları için (Tabletler) */
+@media screen and (max-width: 1200px) {
+    .bg-equation {
+        opacity: 0.08; /* Ekran küçüldükçe kutuların arkasında kalacağı için biraz daha saydamlaştırıyoruz */
+        font-size: 1.8rem;
+    }
+    .left-bg-equation {
+        left: -10px;
+    }
+    .right-bg-equation {
+        right: -10px;
+    }
 }
 
-/* Mobilde denklemleri biraz küçült ki ekrana sığsın */
+/* Mobil ekranlar için denklemleri gizle veya çok küçült */
 @media screen and (max-width: 768px) {
-    .watermark-equation {
-        font-size: 1.2rem;
+    .bg-equation {
+        display: none; /* Mobilde dar ekranda karmaşa yaratmaması için gizliyoruz */
     }
 }
