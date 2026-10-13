@@ -1,351 +1,46 @@
-/* Temel Ayarlar ve Renk Paleti (Toprak / Kahve Teması) */
-:root {
-    --bg-color: #331800;       /* En koyu kahverengi (Ana Arka plan) */
-    --surface-color: #44362F;  /* Koyu kahve-gri (Kartlar ve Menü) */
-    --text-primary: #f4eae1;   /* Krem / Kırık beyaz (Ana metinler) */
-    --text-secondary: #c7b4a7; /* Bej / Açık toprak (Alt başlıklar) */
-    --accent-color: #80461B;   /* Kestane / Kiremit (Vurgular ve normal butonlar) */
-    --accent-hover: #a65c26;   /* Üzerine gelince parlayan daha açık kiremit/turuncu */
-    --border-color: #594336;   /* Kart çerçeveleri için ara toprak tonu */
-}
+/* --- Denklem (Watermark) Efektleri --- */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    line-height: 1.6;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: var(--accent-hover);
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #ffffff;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navigasyon (Menü) */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: rgba(68, 54, 47, 0.95); /* Menü için saydam kahve-gri */
-    backdrop-filter: blur(10px);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #f4eae1;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-links li {
-    margin-left: 30px;
-}
-
-.nav-links a {
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-hover);
-}
-
-/* Açılır Menü (Dropdown) */
-.dropdown {
+.equation-card {
     position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--surface-color);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+    overflow: hidden; /* Denklemin kartın dışına taşmasını engeller */
     z-index: 1;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-    top: 100%;
-    left: 0;
 }
 
-.dropdown-content a {
-    color: var(--text-primary);
-    padding: 12px 16px;
-    display: block;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Mobil Menü Butonu (Burger) */
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-primary);
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-/* Bölümler (Sections) */
-.section {
-    padding: 100px 0;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-h2 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    color: #ffffff;
-    border-bottom: 2px solid var(--accent-hover);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.section-subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-}
-
-/* Ana Sayfa (Home) */
-#home {
-    height: 100vh;
-    text-align: center;
+.equation-card > *:not(.watermark-equation) {
     position: relative;
+    z-index: 2; /* Metinlerin denklemin üstünde kalmasını sağlar */
 }
 
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-}
-
-#home h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-#home p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-}
-
-/* Butonlar */
-.btn {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: #f4eae1;
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: var(--accent-hover);
-    color: #ffffff;
-}
-
-.btn.outline {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-color);
-}
-
-.btn.outline:hover {
-    background-color: var(--accent-color);
-    color: #ffffff;
-}
-
-/* Kart Tasarımları */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.card, .project-card {
-    background-color: var(--surface-color);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover, .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(15, 7, 0, 0.8);
-    border-color: var(--accent-hover);
-}
-
-.card h3, .project-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.date {
-    font-size: 0.85rem;
-    color: var(--accent-hover);
-    margin-bottom: 15px;
-}
-
-.read-more {
-    display: inline-block;
-    margin-top: 15px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* Etiketler (Tags) */
-.tags {
-    margin: 15px 0;
-}
-.tags span {
-    background-color: rgba(128, 70, 27, 0.3); /* Accent renginin saydam hali */
-    color: var(--text-primary);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 8px;
-    display: inline-block;
-    border: 1px solid var(--accent-color);
-}
-
-/* Hakkımda Bölümü */
-.about-content {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-}
-.about-text {
-    flex: 1;
-}
-.social-links {
-    margin-top: 20px;
-}
-.social-links a {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    color: var(--text-secondary);
-}
-.social-links a:hover {
-    color: var(--accent-hover);
-}
-
-/* Scroll Animasyonları */
-.reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-out;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Fizik Canvas Arkaplan */
-#physicsCanvas {
+.watermark-equation {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-    opacity: 0.5; /* Animasyonun belirginliği */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.12; /* Çok hafif soluk görünüm (İstersen artırabilirsin) */
+    font-size: 1.8rem;
+    pointer-events: none; /* Üzerine tıklanmasını engeller */
+    white-space: nowrap;
+    color: var(--text-primary);
+    transition: opacity 0.4s ease;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+/* Kartın üzerine gelince denklem hafif belirginleşsin */
+.equation-card:hover .watermark-equation {
+    opacity: 0.25; 
 }
 
-/* Mobil Uyumluluk */
+/* Klasik Mekanik (Sola yaslı denklem) */
+.left-equation {
+    left: -20px;
+}
+
+/* Kuantum (Sağa yaslı denklem) */
+.right-equation {
+    right: -20px;
+}
+
+/* Mobilde denklemleri biraz küçült ki ekrana sığsın */
 @media screen and (max-width: 768px) {
-    .nav-links {
-        position: absolute;
-        right: 0px;
-        height: 100vh;
-        top: 70px;
-        background-color: var(--surface-color);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-        border-left: 1px solid var(--border-color);
-    }
-    .nav-links li {
-        margin: 20px 0;
-    }
-    .nav-links.nav-active {
-        transform: translateX(0%);
-    }
-    .burger {
-        display: block;
-    }
-    .dropdown-content {
-        position: relative;
-        box-shadow: none;
-        border: none;
-        background-color: transparent;
+    .watermark-equation {
+        font-size: 1.2rem;
     }
 }
