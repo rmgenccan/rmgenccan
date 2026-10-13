@@ -50,30 +50,28 @@
     </section>
 
     <!-- Ders Notları - Fizik Bölümü -->
-    <section id="fizik-notlari" class="section reveal">
+    <section id="fizik-notlari" class="section reveal equation-section">
+        <!-- Arka Plan Denklemleri (Kutucukların DIŞINDA, sağda ve solda) -->
+        <div class="bg-equation left-bg-equation">
+            $$ \frac{\partial L}{\partial q} - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) = 0 $$
+        </div>
+        <div class="bg-equation right-bg-equation">
+            $$ i\hbar\frac{\partial}{\partial t}\Psi = \hat{H}\Psi $$
+        </div>
+
         <div class="container">
             <h2>Fizik Ders Notları</h2>
             <p class="section-subtitle">Kuantum mekaniği, termodinamik ve klasik mekanik üzerine notlarım.</p>
             
             <div class="grid-container">
-                <!-- Klasik Mekanik Kartı -->
-                <article class="card equation-card">
-                    <div class="watermark-equation left-equation">
-                        <!-- Euler-Lagrange Denklemi -->
-                        $$ \frac{\partial L}{\partial q} - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) = 0 $$
-                    </div>
+                <article class="card">
                     <h3>Klasik Mekanik - Newton Kanunları</h3>
                     <p class="date">Ekim 2026</p>
                     <p>Newton'un hareket yasaları ve Euler-Lagrange yaklaşımları.</p>
                     <a href="#" class="read-more">Notu Oku <i class="fas fa-arrow-right"></i></a>
                 </article>
 
-                <!-- Kuantum Fiziği Kartı -->
-                <article class="card equation-card">
-                    <div class="watermark-equation right-equation">
-                        <!-- Schrödinger Denklemi -->
-                        $$ i\hbar\frac{\partial}{\partial t}\Psi = \hat{H}\Psi $$
-                    </div>
+                <article class="card">
                     <h3>Kuantum Fiziğine Giriş</h3>
                     <p class="date">Eylül 2026</p>
                     <p>Schrödinger denklemi ve dalga fonksiyonları hakkında temel bilgiler.</p>
@@ -84,16 +82,17 @@
     </section>
 
     <!-- Ders Notları - Yapay Zeka Bölümü -->
-    <section id="yz-notlari" class="section reveal">
+    <section id="yz-notlari" class="section reveal equation-section">
+         <!-- YSA Denklemi (Sol Arka Plan) -->
+         <div class="bg-equation left-bg-equation">
+            $$ \Delta w_{ij} = -\eta \frac{\partial E}{\partial w_{ij}} $$
+        </div>
+
         <div class="container">
             <h2>Yapay Zeka Ders Notları</h2>
             <p class="section-subtitle">Makine öğrenmesi algoritmaları ve derin öğrenme modelleri.</p>
             <div class="grid-container">
-                <article class="card equation-card">
-                     <div class="watermark-equation left-equation">
-                        <!-- YSA Ağırlık Güncelleme Denklemi (Backprop) -->
-                        $$ \Delta w_{ij} = -\eta \frac{\partial E}{\partial w_{ij}} $$
-                    </div>
+                <article class="card">
                     <h3>Yapay Sinir Ağlarına (YSA) Giriş</h3>
                     <p class="date">Ekim 2026</p>
                     <p>İleri beslemeli ağlar ve geri yayılım (backpropagation) algoritması.</p>
