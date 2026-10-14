@@ -105,3 +105,71 @@ if (canvas) {
 
     animate();
 }
+
+
+// --- 3D Particle Sphere Canvas (eokahya.github.io esintili Dönen Nokta Küre) ---
+const sphereCanvas = document.getElementById('sphereCanvas');
+if (sphereCanvas) {
+        const sCtx = sphereCanvas.getContext('2d');
+        let sWidth = sphereCanvas.width = sphereCanvas.clientWidth || 300;
+        let sHeight = sphereCanvas.height = sphereCanvas.clientHeight || 300;
+        const numDots = 200;
+        const dots = [];
+        const radius = Math.min(sWidth, sHeight) * 0.35;
+        let angleX = 0.005;
+        let angleY = 0.005;
+
+    for (let i = 0; i < numDots; i++) {
+                const theta = Math.acos(2 * Math.random() - 1);
+                const phi = 2 * Math.PI * Math.random();
+                dots.push({
+                                x: radius * Math.sin(theta) * Math.cos(phi),
+                                y: radius * Math.sin(theta) * Math.sin(phi),
+                                z: radius * Math.cos(theta)
+                });
+    }
+
+    function renderSphere() {
+                sCtx.clearRect(0, 0, sWidth, sHeight);
+                const cx = sWidth / 2;
+                const cy = sHeight / 2;
+
+            for (let i = 0; i < dots.length; i++) {
+                            let d = dots[i];
+                            let cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+                            let cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+
+                    let y1 = d.y * cosX - d.z * sinX;
+                            let z1 = d.z * cosX + d.y * sinX;
+                            let x1 = d.x * cosY + z1 * sinY;
+                            let z2 = z1 * cosY - d.x * sinY;
+
+                    d.x = x1; d.y = y1; d.z = z2;
+
+                    let scale = 300 / (300 + d.z);
+                            let px = d.x * scale + cx;
+                            let py = d.y * scale + cy;
+                            let alpha = (d.z + radius) / (2 * radius);
+
+                    sCtx.beginPath();
+                            sCtx.arc(px, py, 2 * scale, 0, Math.PI * 2);
+                            sCtx.fillStyle = `rgba(255, 187, 71, ${Math.max(0.2, alpha)})`;
+                            sCtx.fill();
+            }
+                requestAnimationFrame(renderSphere);
+    }
+        renderSphere();
+}
+
+// --- Tema Değiştirme (Dark/Light Mode Transition) ---
+const themeBtn = document.getElementById('themeToggleBtn');
+if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    const icon = themeBtn.querySelector('i');
+                    if (icon) {
+                                    icon.classList.toggle('fa-sun');
+                                    icon.classList.toggle('fa-moon');
+                    }
+        });
+}
