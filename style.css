@@ -171,6 +171,58 @@ footer {
     transform: translateY(0);
 }
 
+/* Tema Değiştirme ve Buton Stilleri */
+.theme-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: transform 0.3s ease, color 0.3s ease;
+}
+.theme-btn:hover {
+        transform: rotate(20deg) scale(1.1);
+        color: var(--accent);
+}
+body.light-mode {
+        --bg-primary: #f8f9fa;
+        --text-primary: #212529;
+        --card-bg: #ffffff;
+        --nav-bg: rgba(248, 249, 250, 0.95);
+}
+
+/* Hakkmda ve 3D Nokta Küre Stilleri */
+.about-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+}
+.about-text { flex: 1 1 300px; }
+.about-visual {
+        flex: 1 1 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+#sphereCanvas {
+        max-width: 100%;
+        height: auto;
+        filter: drop-shadow(0 0 15px rgba(255, 187, 71, 0.3));
+}
+
+/* Kart Yükselme ve Parıltı Hover Efekti */
+.card:hover, .project-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 25px rgba(255, 187, 71, 0.2);
+        border-left-color: var(--accent);
+        transition: all 0.3s ease;
+}
+
+
+
 /* --- MOBİL UYUM (RESPONSIVE) --- */
 @media screen and (max-width: 768px) {
     .nav-links {
